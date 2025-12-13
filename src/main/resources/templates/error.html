@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title th:text="${blog.name}"></title>
+	<title th:text="#{title.error}"></title>
 	<link rel="stylesheet" href="/lib/bootstrap-5.3.3/css/bootstrap.min.css">
 	<script src="/lib/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="/lib/fontawesome-free-7.1.0-web/css/all.min.css">
@@ -11,6 +11,12 @@
 <body>
 
 <div th:replace="~{navbar :: navbar}"></div>
+
+<div class="container p-3">
+	<h1 th:text="#{title.error}"></h1>
+	<h1 th:text="|${status} ${error}|"></h1>
+	<h2 th:text="${timestamp}"></h2>
+</div>
 
 </body>
 </html>

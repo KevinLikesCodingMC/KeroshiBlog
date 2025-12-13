@@ -26,4 +26,20 @@ public class BlogProperties {
 	public void setLang(String lang) {
 		this.lang = lang;
 	}
+
+	private String suUsername;
+	public String getSuUsername() {
+		return suUsername;
+	}
+	public void setSuUsername(String suUsername) {
+		this.suUsername = suUsername;
+	}
+
+	private String suPassword;
+	public String getSuPassword() {
+		return suPassword;
+	}
+	public void setSuPassword(String suPassword) {
+		this.suPassword = suPassword;
+	}
 }

@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title th:text="#{title.error}"></title>
-	<link rel="stylesheet" href="/lib/bootstrap-5.3.3/css/bootstrap.min.css">
-	<script src="/lib/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
-	<link rel="stylesheet" href="/lib/fontawesome-free-7.1.0-web/css/all.min.css">
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
 </head>
 <body>
 
-<div th:replace="~{navbar :: navbar}"></div>
+<div th:replace="~{fragments :: header}"></div>
 
-<div class="container p-3">
-	<h1 th:text="#{title.error}"></h1>
-	<h1 th:text="|${status} ${error}|"></h1>
-	<h2 th:text="${timestamp}"></h2>
+<div class="container d-flex align-items-center min-vh-80">
+	<div class="row justify-content-center w-100">
+		<div class="col-12 text-start">
+			<h1>
+				<i class="fa-solid fa-triangle-exclamation"></i>
+				<span th:text="#{title.error}"></span>
+			</h1>
+			<h1>
+				<i class="fa-solid fa-circle-exclamation"></i>
+				<span th:text="${status}"></span>
+				<span th:text="${error}"></span>
+			</h1>
+			<h1>
+				<i class="fa-solid fa-clock"></i>
+				<span th:text="${timestamp}"></span>
+			</h1>
+		</div>
+	</div>
 </div>
+
+<div th:replace="~{fragments :: footer}"></div>
 
 </body>
 </html>

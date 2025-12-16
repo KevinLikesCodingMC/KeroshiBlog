@@ -1,5 +1,5 @@
 <div th:fragment="navbar">
-	<nav class="navbar navbar-expand-sm" style="background-color: rgba(227, 242, 253, 0.500);">
+	<nav class="navbar navbar-expand-sm keroshi-blue-navbar">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/" th:text="${blog.name}"></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-bar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
 							<i class="fa-solid fa-language"></i>
 							<span th:text="#{nav.language}"></span>
 						</a>
-						<ul class="dropdown-menu" style="background-color: rgba(227, 242, 253, 0.500);">
+						<ul class="dropdown-menu keroshi-blue-dropdown-menu">
 							<li><a class="dropdown-item" href="?lang=en">English</a></li>
 							<li><a class="dropdown-item" href="?lang=zh_cn">简体中文</a></li>
 						</ul>

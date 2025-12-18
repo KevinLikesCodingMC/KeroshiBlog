@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+/cm6-build/node_modules/

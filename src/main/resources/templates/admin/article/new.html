@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<title th:text="#{admin.article_new}"></title>
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
+</head>
+<body>
+
+<div th:replace="~{fragments :: header}"></div>
+
+<div id="editor"></div>
+
+<div th:replace="~{fragments :: footer}"></div>
+
+<script src="/lib/codemirror6/codemirror.umd.js"></script>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		try {
+			const editor = new CodeMirror.EditorView({
+				doc: 'Test',
+				extensions: CodeMirror.basicSetup,
+				parent: document.getElementById('editor'),
+			});
+		} catch (error) {
+			document.getElementById('editor').innerHTML =
+				'Error [1]' + error.message;
+		}
+	});
+</script>
+
+</body>
+</html>

@@ -8,12 +8,14 @@ export default {
 		file: 'dist/codemirror.umd.js',
 		format: 'umd',
 		name: 'CodeMirror',
-		globals: {},
 	},
 	plugins: [
 		resolve({
 			browser: true,
-			dedupe: ['@codemirror/state', '@codemirror/view']
+			dedupe: [
+				'@codemirror/state',
+				'@codemirror/view',
+			],
 		}),
 		commonjs(),
 		terser(),

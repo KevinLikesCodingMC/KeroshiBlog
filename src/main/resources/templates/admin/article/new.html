@@ -4,12 +4,30 @@
 	<title th:text="#{admin.article_new}"></title>
 	<th:block th:replace="~{fragments :: meta}"></th:block>
 	<th:block th:replace="~{fragments :: resources}"></th:block>
+
+	<style>
+		.cm-editor.cm-focused {
+			outline: none;
+		}
+	</style>
+
 </head>
 <body>
 
 <div th:replace="~{fragments :: header}"></div>
 
-<div id="editor"></div>
+<div class="container p-3">
+	<h1 th:text="#{admin.article_new}"></h1>
+	<form action="/admin/article/new/admin" method="post">
+		<h1 class="h4 mb-3 fw-normal" th:text="#{admin.article_name}"></h1>
+		<input type="text" class="form-control" name="name" onkeydown="if(event.keyCode===13){return false;}"><br>
+		<h1 class="h4 mb-3 fw-normal" th:text="#{admin.article_title}"></h1>
+		<div id="title"></div><br>
+		<h1 class="h4 mb-3 fw-normal" th:text="#{admin.article_content}"></h1>
+		<div id="content"></div><br>
+		<button class="btn btn-primary py-2" type="submit" th:text="#{admin.submit}"></button>
+	</form>
+</div>
 
 <div th:replace="~{fragments :: footer}"></div>
 
@@ -17,16 +35,42 @@
 
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
-		try {
-			const editor = new CodeMirror.EditorView({
-				doc: 'Test',
-				extensions: CodeMirror.basicSetup,
-				parent: document.getElementById('editor'),
-			});
-		} catch (error) {
-			document.getElementById('editor').innerHTML =
-				'Error [1]' + error.message;
-		}
+		const editor_title = new CodeMirror.EditorView({
+			extensions: [
+				CodeMirror.basicSetup,
+				CodeMirror.markdown({
+					codeLanguages: [
+						CodeMirror.LanguageDescription.of({
+							name: 'cpp',
+							alias: ['cpp', 'c++', 'cc', 'cxx'],
+							support: CodeMirror.cpp()
+						})
+					]
+				}),
+				CodeMirror.foldGutter(),
+				CodeMirror.syntaxHighlighting(CodeMirror.defaultHighlightStyle),
+				CodeMirror.ayuLight,
+			],
+			parent: document.getElementById('title'),
+		});
+		const editor_content = new CodeMirror.EditorView({
+			extensions: [
+				CodeMirror.basicSetup,
+				CodeMirror.markdown({
+					codeLanguages: [
+						CodeMirror.LanguageDescription.of({
+							name: 'cpp',
+							alias: ['cpp', 'c++', 'cc', 'cxx'],
+							support: CodeMirror.cpp()
+						})
+					]
+				}),
+				CodeMirror.foldGutter(),
+				CodeMirror.syntaxHighlighting(CodeMirror.defaultHighlightStyle),
+				CodeMirror.ayuLight,
+			],
+			parent: document.getElementById('content'),
+		});
 	});
 </script>
 

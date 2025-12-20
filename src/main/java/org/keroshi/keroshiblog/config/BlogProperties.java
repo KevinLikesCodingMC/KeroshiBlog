@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "blog")
 @PropertySource(value = {
-		"file:blog.properties",
+		"file:./blog.properties",
 		"classpath:blog.properties"
 }, encoding = "UTF-8", ignoreResourceNotFound = true)
 public class BlogProperties {

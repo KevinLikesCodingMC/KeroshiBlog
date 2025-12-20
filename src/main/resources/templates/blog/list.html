@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<title th:text="#{nav.blog_list}"></title>
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
+
+	<style>
+		a {
+			text-decoration: none;
+		}
+		.page-link {
+			background-color: rgba(240, 250, 255, 0.5) !important;
+		}
+		.active > .page-link {
+			background-color: rgba(13, 110, 253, 0.7) !important;
+			border-color: rgba(13, 110, 253, 0) !important;
+		}
+	</style>
+
+</head>
+<body>
+
+<div th:replace="~{fragments :: header}"></div>
+
+<div class="container p-3">
+	<nav th:if="${totalPages > 0}">
+		<ul class="pagination">
+			<li class="page-item" th:classappend="${currentPage == 0} ? 'disabled' : ''">
+				<a class="page-link"
+					th:href="@{/blog_list(page=${currentPage - 1}, size=${pageSize})}"
+					th:text="#{list.prev}"
+				></a>
+			</li>
+			<th:block th:with="
+            	startPage = ${T(java.lang.Math).max(0, currentPage - 5)},
+            	endPage = ${T(java.lang.Math).min(totalPages - 1, currentPage + 5)}
+        	">
+				<li th:each="i : ${#numbers.sequence(startPage, endPage)}"
+					class="page-item"
+					th:classappend="${i == currentPage} ? 'active' : ''">
+					<a class="page-link"
+					   th:href="@{/blog_list(page=${i}, size=${pageSize})}"
+					   th:text="${i + 1}">
+					</a>
+				</li>
+			</th:block>
+			<li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled' : ''">
+				<a class="page-link"
+					th:href="@{/blog_list(page=${currentPage + 1}, size=${pageSize})}"
+					th:text="#{list.next}"
+				></a>
+			</li>
+		</ul>
+	</nav>
+	<div th:each="article : ${articles}">
+		<h4><a th:href="@{/article/{id}(id=${article.id})}"
+			th:utext="${article.title}"
+			target="_blank"
+		></a></h4>
+	</div>
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+
+</body>
+</html>

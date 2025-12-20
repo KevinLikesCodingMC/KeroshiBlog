@@ -12,35 +12,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
-import java.util.Map;
 import java.util.Optional;
 
 @Controller
-public class AdminArticleController {
+public class BlogArticleController {
 	private final ArticleService articleService;
-	public AdminArticleController(ArticleService articleService) {
+	public BlogArticleController(ArticleService articleService) {
 		this.articleService = articleService;
 	}
 
-	@RequestMapping("/admin/article/new")
-	String adminArticleNew() {
-		return "admin/article/new";
-	}
-
-	@RequestMapping("/admin/article/new/check")
-	String adminArticleNewCheck(@RequestParam Map<String,Object> map) {
-		Article article = new Article();
-		article.setName((String) map.get("name"));
-		article.setTitle((String) map.get("title"));
-		article.setContent((String) map.get("content"));
-		article.setCreateTime(new Date());
-		article.setUpdateTime(new Date());
-		articleService.saveArticle(article);
-		return "redirect:/admin/article/edit/" + article.getId();
-	}
-
-	@RequestMapping("/admin/article_list")
+	@RequestMapping("/blog_list")
 	public String blogList(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
 		Sort sort = Sort.by(Sort.Direction.DESC, "id");
 		Pageable pageable = PageRequest.of(page, size, sort);
@@ -52,26 +33,16 @@ public class AdminArticleController {
 		model.addAttribute("hasNext", articlePage.hasNext());
 		model.addAttribute("hasPrevious", articlePage.hasPrevious());
 		model.addAttribute("pageSize", pageable.getPageSize());
-		return "admin/article/list";
+		return "blog/list";
 	}
 
-	@RequestMapping("/admin/article/edit/{id}")
-	String adminArticleEdit(@PathVariable(value = "id") long id, Model model) {
+	@RequestMapping("/article/{id}")
+	public String articleView(@PathVariable(value = "id") long id, Model model) {
 		Optional<Article> article = articleService.getArticleById(id);
-		if (article.isEmpty()) return "redirect:/admin";
+		if(article.isEmpty()) {
+			return "redirect:/";
+		}
 		model.addAttribute("article", article.get());
-		return "admin/article/edit";
-	}
-
-	@RequestMapping("/admin/article/edit/check/{id}")
-	String adminArticleEditCheck(@PathVariable(value = "id") long id, @RequestParam Map<String,Object> map) {
-		Optional<Article> article = articleService.getArticleById(id);
-		if (article.isEmpty()) return "redirect:/admin";
-		article.get().setName((String) map.get("name"));
-		article.get().setTitle((String) map.get("title"));
-		article.get().setContent((String) map.get("content"));
-		article.get().setUpdateTime(new Date());
-		articleService.saveArticle(article.get());
-		return "redirect:/admin/article/edit/" + id;
+		return "blog/article";
 	}
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-	<title th:text="#{admin.article_new}"></title>
+	<title th:text="#{admin.article_edit}"></title>
 	<th:block th:replace="~{fragments :: meta}"></th:block>
 	<th:block th:replace="~{fragments :: resources}"></th:block>
 
@@ -17,16 +17,26 @@
 <div th:replace="~{fragments :: header}"></div>
 
 <div class="container p-3">
-	<h1 th:text="#{admin.article_new}"></h1>
-	<form action="/admin/article/new/check" method="post" id="form">
+	<h1 th:text="#{admin.article_edit}"></h1>
+	<h4>
+		<span th:text="#{admin.article_view}"></span>
+		<a th:href="@{/article/{id}(id=${article.id})}"
+			th:utext="${article.title}"
+			target="_blank"
+		></a>
+	</h4>
+	<form th:action="@{/admin/article/edit/check/{id}(id=${article.id})}" method="post" id="form">
 		<h1 class="h4 mb-3 fw-normal" th:text="#{admin.article_name}"></h1>
-		<input type="text" class="form-control" name="name" onkeydown="if(event.keyCode===13){return false;}"><br>
+		<input type="text" class="form-control" name="name"
+			onkeydown="if(event.keyCode===13){return false;}"
+			th:value="${article.name}"
+		><br>
 		<h1 class="h4 mb-3 fw-normal" th:text="#{admin.article_title}"></h1>
 		<div id="title"></div><br>
 		<h1 class="h4 mb-3 fw-normal" th:text="#{admin.article_content}"></h1>
 		<div id="content"></div><br>
-		<input type="hidden" name="title" id="title_input">
-		<input type="hidden" name="content" id="content_input">
+		<input type="hidden" name="title" id="title_input" th:value="${article.title}">
+		<input type="hidden" name="content" id="content_input" th:value="${article.content}">
 		<button class="btn btn-primary py-2" type="submit" th:text="#{admin.submit}"></button>
 	</form>
 </div>
@@ -38,6 +48,7 @@
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
 		const editor_title = new CodeMirror.EditorView({
+			doc: document.getElementById('title_input').value,
 			extensions: [
 				CodeMirror.basicSetup,
 				CodeMirror.markdown(),
@@ -48,6 +59,7 @@
 			parent: document.getElementById('title'),
 		});
 		const editor_content = new CodeMirror.EditorView({
+			doc: document.getElementById('content_input').value,
 			extensions: [
 				CodeMirror.basicSetup,
 				CodeMirror.markdown({

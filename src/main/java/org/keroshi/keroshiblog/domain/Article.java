@@ -1,6 +1,8 @@
 package org.keroshi.keroshiblog.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.Date;
 
@@ -24,7 +26,7 @@ public class Article {
 		this.name = name;
 	}
 
-	@Lob
+	@JdbcTypeCode(SqlTypes.LONG32VARCHAR)
 	@Column(name = "title")
 	private String title;
 	public String getTitle() {
@@ -34,7 +36,7 @@ public class Article {
 		this.title = title;
 	}
 
-	@Lob
+	@JdbcTypeCode(SqlTypes.LONG32VARCHAR)
 	@Column(name = "content")
 	private String content;
 	public String getContent() {

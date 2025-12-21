@@ -18,4 +18,8 @@ public interface ArticleService {
 	List<Article> getAllArticles();
 
 	Page<Article> getArticleByPage(Pageable pageable);
+
+	List<Article> getAllVisibleArticles();
+
+	Page<Article> getVisibleArticleByPage(Pageable pageable);
 }

@@ -17,3 +17,7 @@
 .keroshi-gray {
 	color: rgba(187, 187, 187, 0.5);
 }
+
+pre code {
+	tab-size: 4;
+}

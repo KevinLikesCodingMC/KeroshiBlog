@@ -40,4 +40,14 @@ public class ArticleServiceImpl implements ArticleService {
 	public Page<Article> getArticleByPage(Pageable pageable) {
 		return articleRepository.findAll(pageable);
 	}
+
+	@Override
+	public List<Article> getAllVisibleArticles() {
+		return this.articleRepository.findByHiddenFalse();
+	}
+
+	@Override
+	public Page<Article> getVisibleArticleByPage(Pageable pageable) {
+		return articleRepository.findByHiddenFalse(pageable);
+	}
 }

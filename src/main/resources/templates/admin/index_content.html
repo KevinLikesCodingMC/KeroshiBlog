@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<title th:text="#{nav.admin}"></title>
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: codemirror}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
+</head>
+<body>
+
+<div th:replace="~{fragments :: header}"></div>
+
+<div class="container p-3">
+	<h1 class="h3 mb-3 fw-normal" th:text="#{admin.index_content}"></h1>
+	<form th:action="@{/admin/index_content/check}" method="post">
+		<textarea th:text="${content}" id="content" name="content"></textarea><br>
+		<button class="btn btn-primary py-2" type="submit" th:text="#{admin.submit}"></button>
+	</form>
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+
+<script>
+	var contentMarkdownEditor = CodeMirror.fromTextArea(document.getElementById("content"), {
+		mode: "ojMarkdown",
+		lineNumbers: true,
+		matchBrackets: true,
+		indentUnit: 4,
+		tabSize: 4,
+		indentWithTabs: true,
+		lineWrapping: false,
+	});
+</script>
+
+</body>
+</html>

@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+blog.properties
+
 ### STS ###
 .apt_generated
 .classpath
@@ -32,4 +34,3 @@ build/
 ### VS Code ###
 .vscode/
 
-/cm6-build/node_modules/

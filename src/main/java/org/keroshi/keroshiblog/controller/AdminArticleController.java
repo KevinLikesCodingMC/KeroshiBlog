@@ -36,6 +36,7 @@ public class AdminArticleController {
 		article.setContent((String) map.get("content"));
 		article.setCreateTime(new Date());
 		article.setUpdateTime(new Date());
+		article.setHidden(map.containsKey("hidden"));
 		articleService.saveArticle(article);
 		return "redirect:/admin/article/edit/" + article.getId();
 	}
@@ -71,6 +72,7 @@ public class AdminArticleController {
 		article.get().setTitle((String) map.get("title"));
 		article.get().setContent((String) map.get("content"));
 		article.get().setUpdateTime(new Date());
+		article.get().setHidden(map.containsKey("hidden"));
 		articleService.saveArticle(article.get());
 		return "redirect:/admin/article/edit/" + id;
 	}

@@ -22,6 +22,6 @@ public class GlobalErrorController implements ErrorController {
 		model.addAttribute("error", httpStatus.getReasonPhrase());
 		model.addAttribute("timestamp", new Date());
 
-		return "blog/error";
+		return "error";
 	}
 }

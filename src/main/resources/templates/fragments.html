@@ -1,32 +1,48 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns="http://www.w3.org/1999/html">
-
-<head th:fragment="common-header">
+<html lang="zh">
+<head>
 
 	<title>Title</title>
 
 	<th:block th:fragment="meta">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+		<link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
 	</th:block>
 
 	<th:block th:fragment="resources">
-		<link rel="stylesheet" href="/lib/bootstrap-5.3.3/css/bootstrap.min.css">
-		<script src="/lib/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
+		<link rel="stylesheet" th:href="@{/lib/bootstrap-5.3.3/css/bootstrap.min.css}">
+		<script th:src="@{/lib/bootstrap-5.3.3/js/bootstrap.bundle.min.js}"></script>
 
-		<link rel="stylesheet" href="/lib/fontawesome-free-7.1.0-web/css/all.min.css">
+		<link rel="stylesheet" th:href="@{/lib/fontawesome-free-7.1.0-web/css/all.min.css}">
 
-		<link rel="stylesheet" href="/lib/katex-0.16.27/katex.min.css">
-		<script src="/lib/katex-0.16.27/katex.min.js"></script>
-		<script src="/lib/katex-0.16.27/contrib/auto-render.min.js"></script>
+		<link rel="stylesheet" th:href="@{/lib/katex-0.16.27/katex.min.css}">
+		<script th:src="@{/lib/katex-0.16.27/katex.min.js}"></script>
+		<script th:src="@{/lib/katex-0.16.27/contrib/auto-render.min.js}"></script>
 
-		<script src="/lib/marked-17.0.1/marked.umd.js"></script>
+		<script th:src="@{/lib/marked-17.0.1/marked.umd.js}"></script>
 
-		<link rel="stylesheet" href="/lib/highlight-11.11.1/styles/arduino-light.min.css">
-		<script src="/lib/highlight-11.11.1/highlight.min.js"></script>
-		<script src="/lib/highlight-11.11.1/languages/cpp.min.js"></script>
+		<link rel="stylesheet" th:href="@{/lib/highlight-11.11.1/styles/arduino-light.min.css}">
+		<script th:src="@{/lib/highlight-11.11.1/highlight.min.js}"></script>
+		<script th:src="@{/lib/highlight-11.11.1/languages/cpp.min.js}"></script>
 
-		<link rel="stylesheet" href="/lib/keroshi/main.css">
+		<link rel="stylesheet" th:href="@{/lib/keroshi/main.css}">
+		<link rel="stylesheet" th:href="@{/lib/keroshi/custom.css}">
+		<script th:src="@{/lib/keroshi/main.js}"></script>
+	</th:block>
+
+	<th:block th:fragment="codemirror">
+		<link rel="stylesheet" th:href="@{/lib/codemirror-5.65.20/lib/codemirror.css}">
+		<script th:src="@{/lib/codemirror-5.65.20/lib/codemirror.js}"></script>
+		<script th:src="@{/lib/codemirror-5.65.20/mode/markdown.js}"></script>
+		<script th:src="@{/lib/codemirror-5.65.20/mode/xml.js}"></script>
+		<script th:src="@{/lib/codemirror-5.65.20/mode/javascript.js}"></script>
+		<script th:src="@{/lib/codemirror-5.65.20/mode/css.js}"></script>
+		<script th:src="@{/lib/codemirror-5.65.20/mode/htmlmixed.js}"></script>
+		<script th:src="@{/lib/codemirror-5.65.20/mode/clike.js}"></script>
+		<script th:src="@{/lib/codemirror-5.65.20/mode/stex.js}"></script>
+		<script th:src="@{/lib/codemirror-5.65.20/addon/multiplex.js}"></script>
 	</th:block>
 
 </head>
@@ -38,7 +54,7 @@
 </div>
 
 <div th:fragment="footer">
-	<div class="text-center text-muted py-3 border-top">
+	<div class="text-center text-muted py-3">
 		<small th:if="${locale == 'en'}">
 			<span>Powered by</span>
 			<a href="https://github.com/KevinLikesCodingMC/KeroshiBlog">Keroshi Blog</a>

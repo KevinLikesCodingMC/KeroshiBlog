@@ -1,5 +1,6 @@
 package org.keroshi.keroshiblog.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.keroshi.keroshiblog.domain.Article;
 import org.keroshi.keroshiblog.service.ArticleService;
 import org.springframework.data.domain.Page;
@@ -25,7 +26,7 @@ public class BlogArticleController {
 	public String blogList(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
 		Sort sort = Sort.by(Sort.Direction.DESC, "id");
 		Pageable pageable = PageRequest.of(page, size, sort);
-		Page<Article> articlePage = articleService.getArticleByPage(pageable);
+		Page<Article> articlePage = articleService.getVisibleArticleByPage(pageable);
 		model.addAttribute("articles", articlePage);
 		model.addAttribute("currentPage", pageable.getPageNumber());
 		model.addAttribute("totalPages", articlePage.getTotalPages());
@@ -37,10 +38,15 @@ public class BlogArticleController {
 	}
 
 	@RequestMapping("/article/{id}")
-	public String articleView(@PathVariable(value = "id") long id, Model model) {
+	public String articleView(@PathVariable(value = "id") long id, Model model, HttpServletRequest request) {
 		Optional<Article> article = articleService.getArticleById(id);
-		if(article.isEmpty()) {
+		if (article.isEmpty()) {
 			return "redirect:/";
+		}
+		if (article.get().isHidden()) {
+			if(request.getSession().getAttribute("admin") == null) {
+				return "redirect:/blog_list";
+			}
 		}
 		model.addAttribute("article", article.get());
 		return "blog/article";

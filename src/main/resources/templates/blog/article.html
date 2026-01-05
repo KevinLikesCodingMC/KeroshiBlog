@@ -4,13 +4,6 @@
 	<title th:text="${article.name}"></title>
 	<th:block th:replace="~{fragments :: meta}"></th:block>
 	<th:block th:replace="~{fragments :: resources}"></th:block>
-
-	<style>
-		.hljs {
-			background-color: rgba(240, 250, 255, 0.25);
-			border-radius: 5px;
-		}
-	</style>
 </head>
 <body>
 
@@ -39,29 +32,13 @@
 
 <script>
 	let content_code = document.getElementById('content_code').value;
-	content_code = content_code.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
-		try {
-			return katex.renderToString(formula.trim(), {
-				displayMode: true,
-				throwOnError: false
-			});
-		} catch (e) {
-			return match;
-		}
-	});
-	content_code = content_code.replace(/(?<!\\)\$([^$\n]+?)\$(?!\\)/g, (match, formula) => {
-		if (match.includes('`')) return match;
-		try {
-			return katex.renderToString(formula.trim(), {
-				displayMode: false,
-				throwOnError: false
-			});
-		} catch (e) {
-			return match;
-		}
-	});
-	document.getElementById('content').innerHTML = marked.parse(content_code);
+	document.getElementById('content').innerHTML = marked.parse(renderMath(content_code));
 	hljs.highlightAll();
+
+	document.querySelectorAll('table').forEach(element => {
+		element.classList.add('table');
+		element.classList.add('table-borderless');
+	});
 </script>
 
 </body>

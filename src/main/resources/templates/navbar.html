@@ -1,20 +1,20 @@
 <div th:fragment="navbar">
 	<nav class="navbar navbar-expand-sm keroshi-blue-navbar">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/" th:text="${blog.name}"></a>
+			<a class="navbar-brand" th:href="@{/}" th:text="${blog.name}"></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-bar" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="top-bar">
 				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="/blog_list">
+						<a class="nav-link active" aria-current="page" th:href="@{/blog_list}">
 							<i class="fa-solid fa-list"></i>
 							<span th:text="#{nav.blog_list}"></span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="/admin">
+						<a class="nav-link active" aria-current="page" th:href="@{/admin}">
 							<i class="fa-solid fa-screwdriver-wrench"></i>
 							<span th:text="#{nav.admin}"></span>
 						</a>

@@ -1,0 +1,126 @@
+.keroshi-blue-navbar {
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+.hljs {
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+body {
+	background: url("/img/wallpaper.jpeg");
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.table {
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+table, th, td, thead, tbody{
+	background-color: rgba(240, 250, 255, 0.08) !important;
+}
+
+.CodeMirror {
+	background-color: rgba(255, 255, 255, 0.25) !important;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+hr {
+	color: rgba(240, 250, 255, 0.08);
+}
+
+blockquote {
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+input[type="text"], input[type="password"] {
+	background-color: rgba(255, 255, 255, 0.25) !important;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+.keroshi-tag-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	justify-content: center;
+}
+.keroshi-badge {
+	display: inline-flex;
+	align-items: center;
+	background-color: rgba(240, 250, 255, 0.08);
+	color: dodgerblue;
+	padding: 2px 8px;
+	border-radius: 3px;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	transition: all 0.2s ease;
+	white-space: nowrap;
+}
+
+.keroshi-blue-card {
+	background-color: rgba(240, 250, 255, 0.15);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+input[type="text"]:-webkit-autofill,
+input[type="text"]:-webkit-autofill:hover,
+input[type="text"]:-webkit-autofill:focus,
+input[type="password"]:-webkit-autofill,
+input[type="password"]:-webkit-autofill:hover,
+input[type="password"]:-webkit-autofill:focus {
+	transition: background-color 5000s ease-in-out 0s;
+}
+
+.difficulty-circle {
+	display: inline-block;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: 3px;
+	width: 27px;
+	height: 27px;
+}
+.difficulty-label {
+	font-size: 35px;
+	font-weight: bold;
+	text-decoration: none;
+	font-family: inherit;
+}
+.difficulty-circle-small {
+	display: inline-block;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: 2px;
+	width: 21px;
+	height: 21px;
+}
+.difficulty-label-small {
+	font-size: 25px;
+	font-weight: bold;
+	text-decoration: none;
+	font-family: inherit;
+}
+.difficulty-circle-tiny {
+	display: inline-block;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: 2px;
+	width: 18px;
+	height: 18px;
+}
+.difficulty-label-tiny {
+	font-size: 18px;
+	text-decoration: none;
+	font-family: inherit;
+}

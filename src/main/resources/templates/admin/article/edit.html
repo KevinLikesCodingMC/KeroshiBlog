@@ -3,14 +3,8 @@
 <head>
 	<title th:text="#{admin.article_edit}"></title>
 	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: codemirror}"></th:block>
 	<th:block th:replace="~{fragments :: resources}"></th:block>
-
-	<style>
-		.cm-editor.cm-focused {
-			outline: none;
-		}
-	</style>
-
 </head>
 <body>
 
@@ -22,7 +16,6 @@
 		<span th:text="#{admin.article_view}"></span>
 		<a th:href="@{/article/{id}(id=${article.id})}"
 			th:utext="${article.title}"
-			target="_blank"
 		></a>
 	</h4>
 	<form th:action="@{/admin/article/edit/check/{id}(id=${article.id})}" method="post" id="form">
@@ -31,61 +24,48 @@
 			onkeydown="if(event.keyCode===13){return false;}"
 			th:value="${article.name}"
 		><br>
+
 		<h1 class="h4 mb-3 fw-normal" th:text="#{admin.article_title}"></h1>
-		<div id="title"></div><br>
+		<textarea id="title" name="title" th:text="${article.title}"></textarea><br>
+
 		<h1 class="h4 mb-3 fw-normal" th:text="#{admin.article_content}"></h1>
-		<div id="content"></div><br>
-		<input type="hidden" name="title" id="title_input" th:value="${article.title}">
-		<input type="hidden" name="content" id="content_input" th:value="${article.content}">
+		<textarea id="content" name="content" th:text="${article.content}"></textarea><br>
+
+		<h1 class="h4 mb-3 fw-normal" th:text="#{admin.article_status}"></h1>
+		<div class="form-check form-switch">
+			<input class="form-check-input" type="checkbox" id="isHidden" name="hidden"
+				   th:checked="${article.hidden}">
+			<label class="form-check-label" for="isHidden" th:text="#{admin.article_hidden}"></label>
+		</div><br>
+
 		<button class="btn btn-primary py-2" type="submit" th:text="#{admin.submit}"></button>
 	</form>
 </div>
 
 <div th:replace="~{fragments :: footer}"></div>
 
-<script src="/lib/codemirror6/codemirror.umd.js"></script>
-
 <script>
-	document.addEventListener('DOMContentLoaded', function () {
-		const editor_title = new CodeMirror.EditorView({
-			doc: document.getElementById('title_input').value,
-			extensions: [
-				CodeMirror.basicSetup,
-				CodeMirror.markdown(),
-				CodeMirror.foldGutter(),
-				CodeMirror.syntaxHighlighting(CodeMirror.defaultHighlightStyle),
-				CodeMirror.ayuLight,
-			],
-			parent: document.getElementById('title'),
-		});
-		const editor_content = new CodeMirror.EditorView({
-			doc: document.getElementById('content_input').value,
-			extensions: [
-				CodeMirror.basicSetup,
-				CodeMirror.markdown({
-					codeLanguages: [
-						CodeMirror.LanguageDescription.of({
-							name: 'cpp',
-							alias: ['cpp', 'c++', 'cc', 'cxx'],
-							support: CodeMirror.cpp()
-						})
-					]
-				}),
-				CodeMirror.foldGutter(),
-				CodeMirror.syntaxHighlighting(CodeMirror.defaultHighlightStyle),
-				CodeMirror.ayuLight,
-			],
-			parent: document.getElementById('content'),
-		});
-		const form = document.getElementById('form');
-		const title_input = document.getElementById('title_input');
-		const content_input = document.getElementById('content_input');
 
-		form.addEventListener('submit', function (e) {
-			title_input.value = editor_title.state.doc.toString();
-			content_input.value = editor_content.state.doc.toString();
-		});
+	var titleMarkdownEditor = CodeMirror.fromTextArea(document.getElementById("title"), {
+		mode: "ojMarkdown",
+		lineNumbers: true,
+		matchBrackets: true,
+		indentUnit: 4,
+		tabSize: 4,
+		indentWithTabs: true,
+		lineWrapping: false,
 	});
+
+	var contentMarkdownEditor = CodeMirror.fromTextArea(document.getElementById("content"), {
+		mode: "ojMarkdown",
+		lineNumbers: true,
+		matchBrackets: true,
+		indentUnit: 4,
+		tabSize: 4,
+		indentWithTabs: true,
+		lineWrapping: false,
+	});
+
 </script>
 
 </body>

@@ -4,14 +4,29 @@
 	<title th:text="${blog.name}"></title>
 	<th:block th:replace="~{fragments :: meta}"></th:block>
 	<th:block th:replace="~{fragments :: resources}"></th:block>
+	<style>
+		a {
+			text-decoration: none;
+		}
+	</style>
 </head>
 <body>
 
 <div th:replace="~{fragments :: header}"></div>
 
+<textarea id="content-markdown" style="display: none;" th:text="${content}"></textarea>
 
+<div class="container p-3">
+	<div id="content"></div>
+</div>
 
 <div th:replace="~{fragments :: footer}"></div>
+
+<script>
+	let content_md = document.getElementById('content-markdown').value;
+	document.getElementById('content').innerHTML = marked.parse(renderMath(content_md));
+	hljs.highlightAll();
+</script>
 
 </body>
 </html>

@@ -18,6 +18,37 @@
 	color: rgba(187, 187, 187, 0.5);
 }
 
+.keroshi-page-link {
+	background-color: rgba(240, 250, 255, 0.5);
+}
+.active > .keroshi-page-link {
+	background-color: rgba(13, 110, 253, 0.7);
+	border-color: rgba(13, 110, 253, 0);
+}
+.disabled > .keroshi-page-link {
+	background-color: rgba(230, 240, 255, 0.7);
+	color: rgba(5, 50, 200, 0.7);
+}
+
+.hljs {
+	background-color: rgba(240, 250, 255, 0.25);
+	border-radius: 5px;
+}
 pre code {
 	tab-size: 4;
+}
+
+.CodeMirror {
+	height: auto;
+	border: 1px solid #ddd;
+}
+
+th {
+	text-align: center !important;
+}
+
+blockquote {
+	padding: 15px 15px 5px;
+	background: rgba(252, 252, 252, 0.25);
+	border-left: 3px solid #dbdbdb;
 }

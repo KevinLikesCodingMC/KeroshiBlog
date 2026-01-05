@@ -9,13 +9,6 @@
 		a {
 			text-decoration: none;
 		}
-		.page-link {
-			background-color: rgba(240, 250, 255, 0.5) !important;
-		}
-		.active > .page-link {
-			background-color: rgba(13, 110, 253, 0.7) !important;
-			border-color: rgba(13, 110, 253, 0) !important;
-		}
 	</style>
 
 </head>
@@ -27,7 +20,7 @@
 	<nav th:if="${totalPages > 0}">
 		<ul class="pagination">
 			<li class="page-item" th:classappend="${currentPage == 0} ? 'disabled' : ''">
-				<a class="page-link"
+				<a class="page-link keroshi-page-link"
 				   th:href="@{/admin/article_list(page=${currentPage - 1}, size=${pageSize})}"
 				   th:text="#{list.prev}"
 				></a>
@@ -39,14 +32,14 @@
 				<li th:each="i : ${#numbers.sequence(startPage, endPage)}"
 					class="page-item"
 					th:classappend="${i == currentPage} ? 'active' : ''">
-					<a class="page-link"
+					<a class="page-link keroshi-page-link"
 					   th:href="@{/admin/article_list(page=${i}, size=${pageSize})}"
 					   th:text="${i + 1}">
 					</a>
 				</li>
 			</th:block>
 			<li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled' : ''">
-				<a class="page-link"
+				<a class="page-link keroshi-page-link"
 				   th:href="@{/admin/article_list(page=${currentPage + 1}, size=${pageSize})}"
 				   th:text="#{list.next}"
 				></a>
@@ -56,7 +49,6 @@
 	<div th:each="article : ${articles}">
 		<h4><a th:href="@{/admin/article/edit/{id}(id=${article.id})}"
 			th:utext="${article.title}"
-			target="_blank"
 		></a></h4>
 	</div>
 </div>

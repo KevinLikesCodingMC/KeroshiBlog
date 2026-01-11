@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.keroshi</groupId>
 	<artifactId>KeroshiBlog</artifactId>
-	<version>0.0.1-SNAPSHOT2</version>
+	<version>0.0.1-SNAPSHOT3</version>
 	<name>KeroshiBlog</name>
 	<description>KeroshiBlog</description>
 	<url/>

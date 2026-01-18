@@ -26,7 +26,7 @@ function renderMath(text) {
 }
 
 if (typeof CodeMirror !== 'undefined') {
-	CodeMirror.defineMode("ojMarkdown", function (config) {
+	CodeMirror.defineMode("BlogMarkdown", function (config) {
 		return CodeMirror.multiplexingMode(
 			CodeMirror.getMode(config, "text/x-markdown"),
 			{
@@ -38,6 +38,11 @@ if (typeof CodeMirror !== 'undefined') {
 				open: "$", close: "$",
 				mode: CodeMirror.getMode(config, "text/x-stex"),
 				delimStyle: "katex-marker"
+			},
+			{
+				open: "```cpp", close: "```",
+				mode: CodeMirror.getMode(config, "text/x-c++src"),
+				delimStyle: "code-block-marker",
 			}
 		);
 	});

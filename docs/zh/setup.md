@@ -1,80 +1,82 @@
-# 🚀 Keroshi Blog 部署指南
+# Keroshi Blog 搭建
 
 ![Version](https://img.shields.io/badge/version-0.0.1SNAPSHOT3-orange.svg)
 
-感谢使用 Keroshi Blog。本文档将指引你完成基础环境的搭建与启动。
+本篇文章将讲解如何搭建 Keroshi Blog。
 
 ---
 
-## 🛠 环境依赖
+## 环境依赖
 
-在开始部署前，请确保你的服务器环境满足以下要求：
+### 1. Java
 
-### 1. Java 环境
+安装 **JDK 24** 或更高版本。
 
-* **要求**: 安装 **JDK 24** 或更高版本。
-* **验证**: 执行 `java -version` 确认版本号。
+### 2. 数据库
 
-### 2. 数据库支持
+Keroshi Blog 支持以下数据库：
 
-Keroshi Blog 使用了高度兼容的持久层设计，支持以下数据库：
+```text
+MySQL
+MariaDB
+PostgreSQL
+Oracle Database
+Microsoft SQL Server
+H2 Database
+```
 
-* **主流驱动**: MySQL, MariaDB, PostgreSQL
-* **企业级**: Oracle Database, Microsoft SQL Server
-* **轻量级**: H2 Database (适合快速测试)
-
-> 请预先创建一个空的数据库实例（例如命名为 `keroshi_blog`）。
+然后创建一个空的数据库，例如命名为 `keroshi`。
 
 ---
 
-## 📥 下载与解压
+## 下载
 
-1. 前往 [Releases](https://github.com/KevinLikesCodingMC/KeroshiBlog/releases) 页面。
-2. 选择最新版本（推荐 `v0.0.1-SNAPSHOT3`）下载压缩包。
-3. 解压后，你将获得如下目录结构：
+前往 [Releases](https://github.com/KevinLikesCodingMC/KeroshiBlog/releases)
+页面下载 `v0.0.1-SNAPSHOT3` 版本的压缩包。
+
+解压后，目录结构会类似这样：
 
 ```text
 KeroshiBlog/
-├── KeroshiBlog.jar      # 程序核心文件
-├── blogdata/            # 博客静态资源
-├── keroshi/             # 博客静态资源配置参考      
-└── blog.properties      # 核心配置文件（数据库、端口等）
+├── KeroshiBlog.jar
+├── blogdata/
+├── keroshi/   
+├── docs/
+├── blog.properties
+├── README.md
+└── LICENSE
 ```
 
 ---
 
-## ⚙️ 配置
+## 配置
 
-编辑 `blog.properties` 文件，重点配置以下项：
+编辑 `blog.properties` 文件。
 
-1. **数据库链接**: 填入你的数据库 URL、用户名和密码。
-2. **管理员设置**: **修改默认的超级管理员用户名和密码。**
-3. **端口号**: 默认 `8080`，可根据需要更改。
+这里给出一个示例：
 
-## ⚠️ 重要安全警告
+```properties
+blog.name=Keroshi Blog
+blog.lang=zh
 
-> **请务必在启动前修改 `blog.properties` 中的超级管理员账户与密码！**
->
-> 默认配置文件中包含了初始的管理员凭据，若不修改直接部署到公网，将面临极大的安全风险。
+blog.su_username=admin
+blog.su_password=your_secure_password_here
 
----
+blog.data_path=blogdata
 
+server.port=8080
 
-## 🚀 启动
+spring.datasource.url=jdbc:mysql://localhost:3306/keroshi
+spring.datasource.username=root
+spring.datasource.password=your_db_password
+```
 
-在根目录下执行：
+## 启动
+
+在根目录下执行以下命令即可：
 
 ```bash
 java -jar KeroshiBlog.jar
 ```
 
-启动成功后，通过 `http://服务器IP:端口` 即可访问。
-
----
-
-## ⚠️ 重要说明
-
-> **数据备份提示**:
-> 当前版本为 `SNAPSHOT`（快照版），意味着它仍处于快速迭代中。未来的更新**可能会修改数据库结构**。
-> **在执行任何版本升级前，请务必手动备份您的数据库和 `blogdata` 目录！**
 

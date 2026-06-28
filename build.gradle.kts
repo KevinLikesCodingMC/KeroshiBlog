@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "org.keroshi"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0-SNAPSHOT1"
 
 java {
 	toolchain {
@@ -18,9 +18,13 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+
+	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 }
 
 tasks.withType<Test> {

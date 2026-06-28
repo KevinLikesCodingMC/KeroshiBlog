@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# npm
+web/node_modules/
+src/main/resources/static/dist/*

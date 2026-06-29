@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh" th:lang="${#locale.language}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-    <link rel="stylesheet" th:href="@{/dist/app.css}">
-    <script th:src="@{/dist/app.js}"></script>
-
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
 </head>
 <body>
 
-<h1>Keroshi</h1>
+<div th:replace="~{fragments :: header}"></div>
+
+<h1>Hello Keroshi!</h1>
+
+<div th:replace="~{fragments :: footer}"></div>
 
 </body>
 </html>

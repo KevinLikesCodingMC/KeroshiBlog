@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<title></title>
+
+	<th:block th:fragment="meta">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" th:href="@{/favicon.ico}" type="image/x-icon">
+		<link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+	</th:block>
+
+	<th:block th:fragment="resources">
+		<link rel="stylesheet" th:href="@{/dist/app.css}">
+		<script th:src="@{/dist/app.js}"></script>
+	</th:block>
+
+</head>
+
+<body>
+
+<div th:fragment="header">
+
+</div>
+
+<div th:fragment="footer">
+	<div class="text-center text-muted py-3">
+		<span>Powered by</span>
+		<a href="https://github.com/KevinLikesCodingMC/KeroshiBlog">Keroshi Blog</a>
+	</div>
+</div>
+
+</body>
+
+</html>

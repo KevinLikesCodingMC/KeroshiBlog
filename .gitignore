@@ -39,3 +39,7 @@ out/
 # npm
 web/node_modules/
 src/main/resources/static/dist/*
+
+# h2
+testdb.mv.db
+testdb.trace.db

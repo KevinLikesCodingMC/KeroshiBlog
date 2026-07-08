@@ -2,7 +2,7 @@ package org.keroshi.keroshiblog.service;
 
 import org.keroshi.keroshiblog.domain.User;
 import org.keroshi.keroshiblog.repository.UserRepository;
-import org.keroshi.keroshiblog.service.result.RegisterResult;
+import org.keroshi.keroshiblog.result.Result;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,83 +27,47 @@ public class UserService {
 	private static final Pattern PASSWORD_PATTERN =
 			Pattern.compile("^[ -~]+$");
 
-	public RegisterResult register(
+	public Result<User> register(
 			String username,
 			String password
 	) {
 		if (username == null || username.isBlank()) {
-			return new RegisterResult(
-					false,
-					"USERNAME_EMPTY",
-					null
-			);
+			return Result.fail("USERNAME_EMPTY");
 		}
 
 		if (username.length() < 3) {
-			return new RegisterResult(
-					false,
-					"USERNAME_TOO_SHORT",
-					null
-			);
+			return Result.fail("USERNAME_TOO_SHORT");
 		}
 
 		if (username.length() > 64) {
-			return new RegisterResult(
-					false,
-					"USERNAME_TOO_LONG",
-					null
-			);
+			return Result.fail("USERNAME_TOO_LONG");
 		}
 
 		if (! USERNAME_PATTERN.matcher(username).matches()) {
-			return new RegisterResult(
-					false,
-					"USERNAME_INVALID",
-					null
-			);
+			return Result.fail("USERNAME_INVALID");
 		}
 
 		String usernameNormalized =
 				username.toLowerCase(Locale.ROOT);
 
 		if (userRepository.existsByUsernameNormalized(usernameNormalized)) {
-			return new RegisterResult(
-					false,
-					"USERNAME_EXISTS",
-					null
-			);
+			return Result.fail("USERNAME_EXISTS");
 		}
 
 		if (password == null || password.isBlank()) {
-			return new RegisterResult(
-					false,
-					"PASSWORD_EMPTY",
-					null
-			);
+			return Result.fail("PASSWORD_EMPTY");
 		}
 
 		if (password.length() < 8) {
-			return new RegisterResult(
-					false,
-					"PASSWORD_TOO_SHORT",
-					null
-			);
+			return Result.fail("PASSWORD_TOO_SHORT");
 		}
 
 		if (password.length() > 64) {
-			return new RegisterResult(
-					false,
-					"PASSWORD_TOO_LONG",
-					null
-			);
+			return Result.fail("PASSWORD_TOO_LONG");
 		}
 
 		if (! PASSWORD_PATTERN.matcher(password).matches()) {
-			return new RegisterResult(
-					false,
-					"PASSWORD_INVALID",
-					null
-			);
+			return Result.fail("PASSWORD_INVALID");
 		}
 
 		String passwordHash = passwordEncoder.encode(password);
@@ -116,10 +80,6 @@ public class UserService {
 		user.setRegisterTime(Instant.now());
 		userRepository.save(user);
 
-		return new RegisterResult(
-				true,
-				"SUCCESS",
-				user
-		);
+		return Result.ok(user);
 	}
 }

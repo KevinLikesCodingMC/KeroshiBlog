@@ -20,7 +20,12 @@ public class UserServiceTest {
 	void setUp() {
 		PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
 		userRepository = mock(UserRepository.class);
-		userService = new UserService(userRepository, passwordEncoder);
+		InviteCodeService inviteCodeService = mock(InviteCodeService.class);
+		userService = new UserService(
+				userRepository,
+				inviteCodeService,
+				passwordEncoder
+		);
 	}
 
 	@ParameterizedTest
@@ -28,7 +33,7 @@ public class UserServiceTest {
 			"", " ", "  ", "   ",
 	})
 	void usernameEmpty(String username) {
-		var result = userService.register(username, "keroshi1");
+		var result = userService.register(username, "keroshi1", "");
 
 		assertFalse(result.success());
 		assertEquals("USERNAME_EMPTY", result.code());
@@ -36,7 +41,7 @@ public class UserServiceTest {
 
 	@Test
 	void usernameTooShort() {
-		var result = userService.register("a", "keroshi1");
+		var result = userService.register("a", "keroshi1", "");
 
 		assertFalse(result.success());
 		assertEquals("USERNAME_TOO_SHORT", result.code());
@@ -45,7 +50,7 @@ public class UserServiceTest {
 	@Test
 	void usernameTooLong() {
 		String username = "a".repeat(65);
-		var result = userService.register(username, "keroshi1");
+		var result = userService.register(username, "keroshi1", "");
 
 		assertFalse(result.success());
 		assertEquals("USERNAME_TOO_LONG", result.code());
@@ -58,7 +63,7 @@ public class UserServiceTest {
 			"a+b", "a b", "  a", "a  ",
 	})
 	void usernameInvalid(String username) {
-		var result = userService.register(username, "keroshi1");
+		var result = userService.register(username, "keroshi1", "");
 
 		assertFalse(result.success());
 		assertEquals("USERNAME_INVALID", result.code());
@@ -69,7 +74,7 @@ public class UserServiceTest {
 		when(userRepository.existsByUsernameNormalized("keroshi"))
 				.thenReturn(true);
 
-		var result = userService.register("Keroshi", "keroshi1");
+		var result = userService.register("Keroshi", "keroshi1", "");
 
 		assertFalse(result.success());
 		assertEquals("USERNAME_EXISTS", result.code());
@@ -80,7 +85,7 @@ public class UserServiceTest {
 			"", " ", "  ", "   ",
 	})
 	void passwordEmpty(String password) {
-		var result = userService.register("Keroshi", password);
+		var result = userService.register("Keroshi", password, "");
 
 		assertFalse(result.success());
 		assertEquals("PASSWORD_EMPTY", result.code());
@@ -88,7 +93,7 @@ public class UserServiceTest {
 
 	@Test
 	void passwordTooShort() {
-		var result = userService.register("Keroshi", "keroshi");
+		var result = userService.register("Keroshi", "keroshi", "");
 
 		assertFalse(result.success());
 		assertEquals("PASSWORD_TOO_SHORT", result.code());
@@ -97,7 +102,7 @@ public class UserServiceTest {
 	@Test
 	void passwordTooLong() {
 		String password = "a".repeat(65);
-		var result = userService.register("Keroshi", password);
+		var result = userService.register("Keroshi", password, "");
 
 		assertFalse(result.success());
 		assertEquals("PASSWORD_TOO_LONG", result.code());
@@ -108,7 +113,7 @@ public class UserServiceTest {
 			"ケロシケロシケロシ",
 	})
 	void passwordInvalid(String password) {
-		var result = userService.register("Keroshi", password);
+		var result = userService.register("Keroshi", password, "");
 
 		assertFalse(result.success());
 		assertEquals("PASSWORD_INVALID", result.code());

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh" th:lang="${#locale.language}">
+<head>
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
+
+	<meta name="_csrf" th:content="${_csrf.token}">
+	<meta name="_csrf_header" th:content="${_csrf.headerName}">
+
+	<style>
+		.form-register {
+			max-width: 330px;
+			padding: 1rem;
+		}
+	</style>
+</head>
+<body>
+
+<div th:replace="~{fragments :: header-blog}"></div>
+
+<main class="form-register w-100 m-auto">
+	<form id="registerForm">
+		<div class="mb-3">
+			<label class="form-label" for="usernameInput">
+				<span th:text="#{user.username}"></span>
+			</label>
+			<input type="text" class="form-control" id="usernameInput">
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="passwordInput">
+				<span th:text="#{user.password}"></span>
+			</label>
+			<input type="password" class="form-control" id="passwordInput">
+		</div>
+		<div class="mb-3">
+			<label class="form-label" for="inviteInput">
+				<span th:text="#{user.invite_code}"></span>
+			</label>
+			<input type="text" class="form-control" id="inviteInput">
+		</div>
+
+		<button class="btn btn-primary w-100 py-2" type="submit">
+			<span th:text="#{user.submit}"></span>
+		</button>
+	</form>
+</main>
+
+</body>
+</html>

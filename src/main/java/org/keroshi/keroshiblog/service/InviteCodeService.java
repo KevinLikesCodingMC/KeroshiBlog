@@ -53,7 +53,7 @@ public class InviteCodeService {
 		return str.toString();
 	}
 
-	public Result<Void> use(String code, User user) {
+	public Result<InviteCode> use(String code) {
 		var inviteCode = inviteCodeRepository.findById(code);
 		if (inviteCode.isEmpty()) {
 			return Result.fail("INVITE_CODE_NOT_EXIST");
@@ -66,10 +66,9 @@ public class InviteCodeService {
 		}
 
 		invite.setUsed(true);
-		invite.setUsedBy(user);
 		invite.setUsedTime(Instant.now());
 		inviteCodeRepository.save(invite);
 
-		return Result.ok();
+		return Result.ok(invite);
 	}
 }

@@ -7,6 +7,9 @@ spring:
     password: ""
   messages:
     basename: i18n/messages
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 server:
   port: 8080

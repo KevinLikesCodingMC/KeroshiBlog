@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Markdown</title>
+</head>
+<body>
+
+<div class="container p-5">
+
+	<textarea id="input">
+# 8LPC SDPC
+
+```tetris
+_Z________
+ZZ_______I
+Z______LLI
+OO_SSJJJLI
+OOSS___JLI
+```
+
+# 青柠 Lime Dpc
+
+	</textarea>
+
+	<div id="output"></div>
+</div>
+
+<script type="module">
+	import "bootstrap/dist/css/bootstrap.min.css";
+
+	import { renderMarkdown } from "/src/keroshi.js";
+	import { renderTetris } from "/src/keroshi.js";
+
+	const input = document.getElementById("input");
+	const output = document.getElementById("output");
+
+	function update() {
+		output.innerHTML = renderMarkdown(input.value);
+		renderTetris(output);
+	}
+
+	input.addEventListener("input", update);
+	update();
+
+</script>
+
+</body>
+</html>

@@ -11,21 +11,25 @@
 
 			<div class="collapse navbar-collapse" id="top-bar">
 				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" th:href="@{/blog_list}">
-							Blog List
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<span th:text="#{setting.language}"></span>
 						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="?lang=en">English</a></li>
+							<li><a class="dropdown-item" href="?lang=zh_cn">简体中文</a></li>
+						</ul>
 					</li>
 				</ul>
 
 				<ul class="navbar-nav">
 					<li class="nav-item">
 						<a class="nav-link" th:href="@{/register}">
-							<span th:text="#{user.username}"></span>
+							<span th:text="#{user.register}"></span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link">
+						<a class="nav-link" th:href="@{/login}">
 							<span th:text="#{user.login}"></span>
 						</a>
 					</li>

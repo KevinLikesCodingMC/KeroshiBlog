@@ -106,4 +106,38 @@ public class UserService {
 
 		return Result.ok(user);
 	}
+
+	@Transactional
+	public Result<User> login(
+			String username,
+			String password
+	) {
+		if (username == null || username.isBlank()) {
+			return Result.fail("USERNAME_EMPTY");
+		}
+		if (password == null || password.isBlank()) {
+			return Result.fail("PASSWORD_EMPTY");
+		}
+
+		String usernameNormalized =
+				username.toLowerCase(Locale.ROOT);
+
+		var user = userRepository
+				.findByUsernameNormalized(usernameNormalized);
+
+		if (user.isEmpty()) {
+			return Result.fail("USER_NOT_EXIST");
+		}
+
+		if (! passwordEncoder.matches(
+				password,
+				user.get().getPasswordHash()
+		)) {
+			return Result.fail("PASSWORD_INCORRECT");
+		}
+
+		user.get().setLastLoginTime(Instant.now());
+
+		return Result.ok(user.get());
+	}
 }

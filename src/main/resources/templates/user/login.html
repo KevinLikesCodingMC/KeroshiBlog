@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh" th:lang="${#locale.language}">
+<head>
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
+
+	<title th:text="#{user.login}"></title>
+
+	<style>
+		.form-signin {
+			max-width: 330px;
+			padding: 1rem;
+		}
+		.form-signin .form-floating:focus-within {
+			z-index: 2;
+		}
+		.form-signin input[type="text"] {
+			margin-bottom: -1px;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		.form-signin input[type="password"] {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+	</style>
+</head>
+<body>
+
+<div th:replace="~{fragments :: header-blog}"></div>
+
+<main class="form-signin w-100 m-auto">
+	<form id="loginForm">
+		<h1 class="h3 mb-3 fw-normal" th:text="#{user.login}"></h1>
+		<div class="form-floating">
+			<input type="text" class="form-control" id="usernameInput" placeholder="Username">
+			<label for="usernameInput" th:text="#{user.username}"></label>
+		</div>
+		<div class="form-floating">
+			<input type="password" class="form-control" id="passwordInput" placeholder="Password">
+			<label for="passwordInput" th:text="#{user.password}"></label>
+		</div>
+		<button class="btn btn-primary w-100 py-2" type="submit">
+			<span th:text="#{user.login}"></span>
+		</button>
+	</form>
+</main>
+
+</body>
+</html>

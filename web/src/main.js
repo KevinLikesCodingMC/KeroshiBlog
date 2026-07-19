@@ -6,3 +6,5 @@ window.bootstrap = bootstrap;
 import './keroshi.css'
 
 import "./register.js";
+import "./login.js";
+import "./logout.js"

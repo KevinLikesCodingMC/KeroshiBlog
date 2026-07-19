@@ -22,7 +22,7 @@
 					</li>
 				</ul>
 
-				<ul class="navbar-nav">
+				<ul class="navbar-nav" th:if="${currentUser == null}">
 					<li class="nav-item">
 						<a class="nav-link" th:href="@{/register}">
 							<span th:text="#{user.register}"></span>
@@ -31,6 +31,19 @@
 					<li class="nav-item">
 						<a class="nav-link" th:href="@{/login}">
 							<span th:text="#{user.login}"></span>
+						</a>
+					</li>
+				</ul>
+
+				<ul class="navbar-nav" th:if="${currentUser != null}">
+					<li class="nav-item">
+						<a class="nav-link">
+							<span th:text="${currentUser.username}"></span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" id="logout">
+							<span th:text="#{user.logout}"></span>
 						</a>
 					</li>
 				</ul>

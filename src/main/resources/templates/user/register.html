@@ -4,8 +4,7 @@
 	<th:block th:replace="~{fragments :: meta}"></th:block>
 	<th:block th:replace="~{fragments :: resources}"></th:block>
 
-	<meta name="_csrf" th:content="${_csrf.token}">
-	<meta name="_csrf_header" th:content="${_csrf.headerName}">
+	<title th:text="#{user.register}"></title>
 
 	<style>
 		.form-register {
@@ -20,6 +19,7 @@
 
 <main class="form-register w-100 m-auto">
 	<form id="registerForm">
+		<h1 class="h3 mb-3 fw-normal" th:text="#{user.register}"></h1>
 		<div class="mb-3">
 			<label class="form-label" for="usernameInput">
 				<span th:text="#{user.username}"></span>

@@ -41,6 +41,7 @@
 			<input type="password" class="form-control" id="passwordInput" placeholder="Password">
 			<label for="passwordInput" th:text="#{user.password}"></label>
 		</div>
+		<div class="alert alert-primary d-none" role="alert" id="errorMessage"></div>
 		<button class="btn btn-primary w-100 py-2" type="submit">
 			<span th:text="#{user.login}"></span>
 		</button>

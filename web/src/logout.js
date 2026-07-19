@@ -1,4 +1,4 @@
-const logout = document.getElementById("logout");
+const logout = document.getElementById("logoutLink");
 
 if (logout) {
 	logout.addEventListener("click", async (e) => {

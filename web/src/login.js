@@ -1,8 +1,21 @@
+const link = document.getElementById("loginLink");
+
+if (link) {
+	link.href += "?redirect=" +
+		encodeURIComponent(
+			window.location.pathname
+			+ window.location.search
+		);
+}
+
 const form = document.getElementById("loginForm");
 
 if (form) {
 	form.addEventListener("submit", async (e) => {
 		e.preventDefault();
+
+		const errorMessage = document.getElementById("errorMessage");
+		errorMessage.classList.add("d-none");
 
 		const username = document.getElementById("usernameInput").value;
 		const password = document.getElementById("passwordInput").value;
@@ -24,7 +37,16 @@ if (form) {
 
 		const result = await response.json();
 
-		alert(result.code);
+		if (result.success) {
+			const redirect =
+				new URLSearchParams(window.location.search).get("redirect");
+			window.location.href = redirect || "/";
+		}
+		else {
+			const errorMessage = document.getElementById("errorMessage");
+			errorMessage.classList.remove("d-none");
+			errorMessage.innerHTML = result.code;
+		}
 	});
 
 }

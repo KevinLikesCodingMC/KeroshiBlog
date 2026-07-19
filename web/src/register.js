@@ -26,7 +26,14 @@ if (form) {
 
 		const result = await response.json();
 
-		alert(result.code);
+		if (result.success) {
+			window.location.href = "/login";
+		}
+		else {
+			const errorMessage = document.getElementById("errorMessage");
+			errorMessage.classList.remove("d-none");
+			errorMessage.innerHTML = result.code;
+		}
 	});
 
 }

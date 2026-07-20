@@ -20,6 +20,14 @@
 							<li><a class="dropdown-item" href="?lang=zh_cn">简体中文</a></li>
 						</ul>
 					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<span th:text="#{tools.tools}"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" th:href="@{/tools/codemirror}">Codemirror</a></li>
+						</ul>
+					</li>
 				</ul>
 
 				<ul class="navbar-nav" th:if="${currentUser == null}">

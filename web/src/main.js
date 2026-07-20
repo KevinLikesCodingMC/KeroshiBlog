@@ -8,3 +8,5 @@ import './keroshi.css'
 import "./user/register.js";
 import "./user/login.js";
 import "./user/logout.js"
+
+import "./editor/codemirror.js"

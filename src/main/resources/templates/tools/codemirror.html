@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh" th:lang="${#locale.language}">
+<head>
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
+
+	<title>Codemirror</title>
+</head>
+<body>
+
+<div th:replace="~{fragments :: header-blog}"></div>
+
+<div class="container py-4">
+	<h1>CodeMirror</h1>
+	<div id="toolEditor"></div>
+</div>
+
+</body>
+</html>

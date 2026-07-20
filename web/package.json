@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@codemirror/state": "^6.7.1",
     "bootstrap": "^5.3.8",
+    "codemirror": "^6.0.2",
     "marked": "^18.0.5"
   },
   "devDependencies": {

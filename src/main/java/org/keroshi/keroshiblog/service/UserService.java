@@ -1,8 +1,10 @@
 package org.keroshi.keroshiblog.service;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.keroshi.keroshiblog.domain.InviteCode;
 import org.keroshi.keroshiblog.domain.User;
+import org.keroshi.keroshiblog.dto.CurrentUser;
 import org.keroshi.keroshiblog.repository.UserRepository;
 import org.keroshi.keroshiblog.result.Result;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,6 +33,17 @@ public class UserService {
 			= Pattern.compile("^[a-zA-Z0-9_.-]+$");
 	private static final Pattern PASSWORD_PATTERN =
 			Pattern.compile("^[ -~]+$");
+
+	public CurrentUser getCurrentUser(HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+
+		if (userId == null) {
+			return null;
+		}
+
+		var user = userRepository.findById(userId);
+		return user.map(CurrentUser :: from).orElse(null);
+	}
 
 	@Transactional
 	public Result<User> register(

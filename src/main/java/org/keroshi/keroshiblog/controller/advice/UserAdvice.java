@@ -2,26 +2,20 @@ package org.keroshi.keroshiblog.controller.advice;
 
 import jakarta.servlet.http.HttpSession;
 import org.keroshi.keroshiblog.dto.CurrentUser;
-import org.keroshi.keroshiblog.repository.UserRepository;
+import org.keroshi.keroshiblog.service.UserService;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @ControllerAdvice
 public class UserAdvice {
-	private final UserRepository userRepository;
+	private final UserService userService;
 
-	public UserAdvice(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	public UserAdvice(UserService userService) {
+		this.userService = userService;
 	}
 
 	@ModelAttribute("currentUser")
 	public CurrentUser currentUser(HttpSession session) {
-		Long userId = (Long) session.getAttribute("userId");
-		if (userId == null) {
-			return null;
-		}
-
-		var user = userRepository.findById(userId);
-		return user.map(CurrentUser :: from).orElse(null);
+		return userService.getCurrentUser(session);
 	}
 }

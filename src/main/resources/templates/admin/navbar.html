@@ -1,8 +1,8 @@
-<div th:fragment="navbar-blog">
-	<nav class="navbar navbar-expand-sm keroshi-blue-navbar">
+<div th:fragment="navbar-admin">
+	<nav class="navbar navbar-expand-sm keroshi-green-navbar">
 		<div class="container-fluid">
 			<a class="navbar-brand" th:href="@{/}">
-				Keroshi Blog
+				Keroshi Blog Admin
 			</a>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-bar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,29 +28,9 @@
 							<li><a class="dropdown-item" th:href="@{/tools/codemirror}">Codemirror</a></li>
 						</ul>
 					</li>
-
-					<li class="nav-item" th:if="${currentUser != null and currentUser.admin}">
-						<a class="nav-link" th:href="@{/admin}">
-							<span th:text="#{admin.admin}"></span>
-						</a>
-					</li>
-
 				</ul>
 
-				<ul class="navbar-nav" th:if="${currentUser == null}">
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/register}">
-							<span th:text="#{user.register}"></span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/login}" id="loginLink">
-							<span th:text="#{user.login}"></span>
-						</a>
-					</li>
-				</ul>
-
-				<ul class="navbar-nav" th:if="${currentUser != null}">
+				<ul class="navbar-nav">
 					<li class="nav-item">
 						<a class="nav-link">
 							<span th:text="${currentUser.username}"></span>

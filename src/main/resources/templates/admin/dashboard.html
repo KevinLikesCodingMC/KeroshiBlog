@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh" th:lang="${#locale.language}">
+<head>
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
+
+	<title th:text="#{admin.admin}"></title>
+</head>
+<body>
+
+<div th:replace="~{fragments :: header-admin}"></div>
+
+<div class="container py-4">
+	<div class="d-flex">
+		<div th:replace="~{admin/sidebar :: admin-sidebar}"></div>
+
+		<div class="p-3 flex-grow-1">
+			<h1 th:text="#{dashboard.title}"></h1>
+
+			<div class="row">
+				<div th:replace="~{admin/card :: memory}"></div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

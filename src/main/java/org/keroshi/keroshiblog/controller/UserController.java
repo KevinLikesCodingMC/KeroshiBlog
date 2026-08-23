@@ -20,7 +20,12 @@ public class UserController {
 	}
 
 	@RequestMapping("/register")
-	public String register() {
+	public String register(HttpSession session) {
+
+		if (session.getAttribute("userId") != null) {
+			return "redirect:/";
+		}
+
 		return "user/register";
 	}
 
@@ -44,7 +49,12 @@ public class UserController {
 	}
 
 	@RequestMapping("/login")
-	public String login() {
+	public String login(HttpSession session) {
+
+		if (session.getAttribute("userId") != null) {
+			return "redirect:/";
+		}
+
 		return "user/login";
 	}
 
@@ -54,6 +64,11 @@ public class UserController {
 			@RequestBody LoginRequest request,
 			HttpSession session
 	) {
+
+		if (session.getAttribute("userId") != null) {
+			return Result.fail("ALREADY_LOGIN");
+		}
+
 		var result = userService.login(
 			request.username(),
 			request.password()

@@ -21,7 +21,7 @@ public class ArticleService {
 		articleRepository.save(article);
 	}
 
-	public Article createArticle(User user) {
+	public void createArticle(User user) {
 		Article article = new Article();
 
 		article.setName("Unnamed");
@@ -31,10 +31,17 @@ public class ArticleService {
 		article.setUpdateTime(Instant.now());
 
 		saveArticle(article);
-		return article;
 	}
 
 	public List<Article> getAllArticles() {
 		return this.articleRepository.findAll();
 	}
+
+	public List<Article> getArticlesByUserId(Long id) {
+		return articleRepository.findByAuthorId(id);
+	}
+	public List<Article> getArticlesByUser(User user) {
+		return articleRepository.findByAuthor(user);
+	}
+
 }

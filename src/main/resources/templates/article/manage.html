@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh" th:lang="${#locale.language}">
+<head>
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
+
+	<title th:text="#{article.manage}"></title>
+</head>
+<body>
+
+<div th:replace="~{fragments :: header-blog}"></div>
+
+<div class="container py-4" id="articleManage">
+	<h1 th:text="#{article.manage}"></h1>
+
+	<button type="button" class="btn btn-primary" id="newBtn">
+		<span th:text="#{article.new}"></span>
+	</button>
+	<button type="button" class="btn btn-outline-secondary" id="refreshBtn">
+		<span th:text="#{article.refresh}"></span>
+	</button>
+	<br><br>
+
+	<h2 th:text="#{article.list}"></h2>
+
+	<div id="articleList">
+
+		<div class="d-none">
+			<button id="viewBtn" class="btn btn-sm btn-outline-info me-1">
+				<span th:text="#{article.view}"></span>
+			</button>
+			<button id="editBtn" class="btn btn-sm btn-outline-primary me-1">
+				<span th:text="#{article.edit}"></span>
+			</button>
+		</div>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th th:text="#{article.name}"></th>
+					<th th:text="#{article.create_time}"></th>
+					<th th:text="#{article.author}"></th>
+					<th th:text="#{article.action}"></th>
+				</tr>
+			</thead>
+			<tbody id="articleTableBody"></tbody>
+		</table>
+	</div>
+
+</div>
+
+
+<div th:replace="~{fragments :: footer}"></div>
+
+</body>
+</html>

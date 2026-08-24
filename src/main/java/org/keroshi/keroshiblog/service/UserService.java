@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
@@ -33,6 +34,15 @@ public class UserService {
 			= Pattern.compile("^[a-zA-Z0-9_.-]+$");
 	private static final Pattern PASSWORD_PATTERN =
 			Pattern.compile("^[ -~]+$");
+
+	public Optional<User> getUser(HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+
+		if (userId == null) {
+			return Optional.empty();
+		}
+		return userRepository.findById(userId);
+	}
 
 	public CurrentUser getCurrentUser(HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");

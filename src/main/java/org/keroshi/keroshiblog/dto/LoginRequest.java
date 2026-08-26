@@ -1,4 +1,4 @@
-package org.keroshi.keroshiblog.controller.request;
+package org.keroshi.keroshiblog.dto;
 
 public record LoginRequest (
 	String username,

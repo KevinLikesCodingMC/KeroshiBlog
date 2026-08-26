@@ -1,8 +1,8 @@
 package org.keroshi.keroshiblog.controller;
 
 import jakarta.servlet.http.HttpSession;
-import org.keroshi.keroshiblog.controller.request.LoginRequest;
-import org.keroshi.keroshiblog.controller.request.RegisterRequest;
+import org.keroshi.keroshiblog.dto.LoginRequest;
+import org.keroshi.keroshiblog.dto.RegisterRequest;
 import org.keroshi.keroshiblog.result.Result;
 import org.keroshi.keroshiblog.service.UserService;
 import org.springframework.stereotype.Controller;

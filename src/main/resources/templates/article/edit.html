@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh" th:lang="${#locale.language}">
+<head>
+	<th:block th:replace="~{fragments :: meta}"></th:block>
+	<th:block th:replace="~{fragments :: resources}"></th:block>
+
+	<title th:text="#{article.article_edit}"></title>
+</head>
+<body th:data-id="${article.id}">
+
+<textarea
+		id="titleInput"
+		th:text="${article.title}"
+		hidden
+></textarea>
+<textarea
+		id="contentInput"
+		th:text="${article.content}"
+		hidden
+></textarea>
+
+<div th:replace="~{fragments :: header-blog}"></div>
+
+<div class="container p-3">
+	<h1 th:text="#{article.article_edit}"></h1>
+	<h4>
+		<span th:text="#{article.article_view}"></span>
+		<a id="viewArticleLink"></a>
+	</h4>
+
+	<form id="articleEditForm">
+		<label for="nameInput"
+			   class="h4 mb-3 fw-normal"
+			   th:text="#{article.article_name}"
+		></label>
+		<input type="text" class="form-control" id="nameInput"
+			   th:value="${article.name}"><br>
+
+		<label class="h4 mb-3 fw-normal"
+		       th:text="#{article.article_title}"
+		></label>
+		<div id="titleEditor"></div><br>
+
+		<label class="h4 mb-3 fw-normal"
+		       th:text="#{article.article_content}"
+		></label>
+		<div id="contentEditor"></div><br>
+
+		<h1 class="h4 mb-3 fw-normal" th:text="#{article.article_status}"></h1>
+		<div class="form-check form-switch">
+			<input class="form-check-input" type="checkbox" id="isHidden"
+				   th:checked="${article.hidden}"
+				   th:disabled="${!admin}">
+
+			<label class="form-check-label" for="isHidden"
+				   th:text="#{article.article_hidden}"></label>
+		</div><br>
+
+		<button class="btn btn-primary py-2" type="submit"
+		        th:text="#{article.submit}"></button>
+	</form>
+
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+
+</body>
+</html>

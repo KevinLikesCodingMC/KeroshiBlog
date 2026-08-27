@@ -29,6 +29,12 @@
 						</ul>
 					</li>
 
+					<li class="nav-item" th:if="${currentUser != null}">
+						<a class="nav-link" th:href="@{/article/manage}">
+							<span th:text="#{article.manage}"></span>
+						</a>
+					</li>
+
 					<li class="nav-item" th:if="${currentUser != null and currentUser.admin}">
 						<a class="nav-link" th:href="@{/admin}">
 							<span th:text="#{admin.admin}"></span>

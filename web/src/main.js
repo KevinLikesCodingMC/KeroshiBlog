@@ -10,5 +10,7 @@ import "./user/login.js";
 import "./user/logout.js";
 
 import "./article/manage.js";
+import "./article/edit.js";
+import "./article/view.js";
 
 import "./editor/codemirror.js";

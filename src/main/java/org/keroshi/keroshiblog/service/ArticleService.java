@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ArticleService {
@@ -31,6 +32,10 @@ public class ArticleService {
 		article.setUpdateTime(Instant.now());
 
 		saveArticle(article);
+	}
+
+	public Optional<Article> getArticleById(Long id) {
+		return articleRepository.findById(id);
 	}
 
 	public List<Article> getAllArticles() {
